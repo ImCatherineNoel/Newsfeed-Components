@@ -34,45 +34,34 @@ let menuItems = [
 
 const menuMaker = (array) => {
   //create Elements
-  const menu = document.createElement("div");
+  const navigation = document.createElement("div");
   const list = document.createElement("ul");
-  const item1 = document.createElement("li");
-  const item2 = document.createElement("li");
-  const item3 = document.createElement("li");
-  const item4 = document.createElement("li");
-  const item5 = document.createElement("li");
-  const item6 = document.createElement("li");
-
+  array.forEach(item => {
+    const listItem = document.createElement("li");
+    listItem.textContent = item;
+    list.appendChild(listItem);
+    
+  });
+  console.log(list);
+  
   //add classes
-  menu.classList.add("menu");
+  navigation.classList.add("menu");
 
-  //add content
-  item1.textContent = array[0];
-  item2.textContent = array[1];
-  item3.textContent = array[2];
-  item4.textContent = array[3];
-  item5.textContent = array[4];
-  item6.textContent = array[5];
-
+  
   //HTML like structure
-  menu.appendChild(list);
-  list.appendChild(item1);
-  list.appendChild(item2);
-  list.appendChild(item3);
-  list.appendChild(item4);
-  list.appendChild(item5);
-  list.appendChild(item6);
-
+  navigation.appendChild(list);
   //select menuButton
-  const menuButton = document.querySelector(".menu-button");
-
+  const menuButton = document.querySelector("img");
+  
   //event listener
   menuButton.addEventListener("click", () => {
-    menu.classList.toggle("menu--open");
+    navigation.classList.toggle("menu--open");
   })
-
-
-  return menu;
+  
+  
+  return navigation;
 }
 
-menuMaker(menuItems);
+const menu = menuMaker(menuItems);
+const head = document.querySelector(".header");
+head.appendChild(menu);
