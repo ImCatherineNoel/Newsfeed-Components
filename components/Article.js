@@ -85,6 +85,17 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+  },
+  {
+    title: "JavaScript Is Awesome!",
+
+    date: "July 14th, 2020",
+
+    firstParagraph: " I'm Batman It's not who I am underneath but what I do that defines me. No guns, no killing. My anger outweights my guilt. I'm Batman Someone like you. Someone who'll rattle the cages. Bats frighten me. It's time my enemies shared my dread.",
+
+    secondParagraph: "I can't do that as Bruce Wayne... as a man. I'm flesh and blood. I can be ignored, destroyed. But as a symbol, I can be incorruptible, I can be everlasting.",
+
+    thirdParagraph: " Bats frighten me. It's time my enemies shared my dread. Bruce Wayne, eccentric billionaire. Someone like you. Someone who'll rattle the cages. Accomplice? I'm gonna tell them the whole thing was your idea."
   }
 ];
 
@@ -112,7 +123,9 @@ const data = [
   Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new article.
 */
 
+const section = document.querySelector(".articles");
 const articleMaker = (title, date, p1, p2, p3) => {
+  
   //create elements
   const article = document.createElement("div");
   const articleTitle = document.createElement("h2");
@@ -128,6 +141,7 @@ const articleMaker = (title, date, p1, p2, p3) => {
   btn.classList.add("expandButton");
 
   //HTML like structure
+  
   article.appendChild(articleTitle);
   article.appendChild(articleDate);
   article.appendChild(first);
@@ -141,7 +155,16 @@ const articleMaker = (title, date, p1, p2, p3) => {
   first.textContent = p1;
   second.textContent = p2;
   third.textContent = p3;
+  btn.textContent = "+";
+  //Event listener
+  btn.addEventListener("click", () => {
+    article.classList.toggle("article-open");
+  });
 
-  
   return article;
 }
+
+
+data.forEach(text => {
+  section.appendChild(articleMaker(text.title, text.date, text.firstParagraph, text.secondParagraph, text.thirdParagraph));
+})
